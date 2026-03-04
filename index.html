@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Olympus Talent & Entertainment</title>
 
@@ -18,7 +18,7 @@
 
 :root{
 --gold:#ceb17e;
---gold-light:#dcc49a;
+--gold-soft:#d8c193;
 --black:#0c0c0c;
 --gray:#9a9a9a;
 --white:#f5f5f5;
@@ -33,9 +33,399 @@ display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-overflow:hidden;
+padding:24px;
+overflow-x:hidden;
 position:relative;
 }
+
+/* MARBLE */
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:url("https://www.transparenttextures.com/patterns/marble.png");
+opacity:.05;
+mix-blend-mode:screen;
+pointer-events:none;
+}
+
+/* GOLD DUST SHIMMER */
+
+body::after{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 20% 30%, rgba(206,177,126,.04), transparent 50%),
+radial-gradient(circle at 80% 70%, rgba(206,177,126,.03), transparent 60%);
+animation:ambientShift 12s ease-in-out infinite alternate;
+pointer-events:none;
+}
+
+@keyframes ambientShift{
+0%{transform:translateY(0)}
+100%{transform:translateY(-30px)}
+}
+
+/* INTRO */
+
+.intro{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:999;
+animation:introFade 3s forwards;
+}
+
+.intro h1{
+font-family:'Cormorant Garamond',serif;
+letter-spacing:.35em;
+font-size:clamp(30px,6vw,48px);
+color:#ceb17e;
+opacity:0;
+animation:introText 2s ease forwards;
+}
+
+@keyframes introFade{
+0%{opacity:1}
+85%{opacity:1}
+100%{opacity:0;visibility:hidden}
+}
+
+@keyframes introText{
+0%{opacity:0;letter-spacing:.6em}
+100%{opacity:1;letter-spacing:.35em}
+}
+
+/* COLUMNS */
+
+.columns{
+position:fixed;
+inset:0;
+display:flex;
+justify-content:space-evenly;
+opacity:.025;
+pointer-events:none;
+}
+
+.column{
+width:clamp(40px,8vw,120px);
+background:linear-gradient(
+to bottom,
+transparent,
+rgba(206,177,126,.3),
+transparent
+);
+filter:blur(12px);
+animation:columnMove 10s ease-in-out infinite;
+}
+
+.column:nth-child(2){animation-delay:2s}
+.column:nth-child(3){animation-delay:4s}
+
+@keyframes columnMove{
+0%{transform:translateY(0)}
+50%{transform:translateY(-25px)}
+100%{transform:translateY(0)}
+}
+
+/* PARTICLES */
+
+canvas{
+position:fixed;
+inset:0;
+pointer-events:none;
+}
+
+/* MAIN */
+
+.container{
+max-width:520px;
+width:100%;
+padding:32px 24px;
+position:relative;
+z-index:3;
+}
+
+/* SLIDE REVEALS */
+
+.reveal{
+opacity:0;
+transform:translateY(20px);
+animation:revealUp .9s ease forwards;
+}
+
+.reveal.delay1{animation-delay:.5s}
+.reveal.delay2{animation-delay:.9s}
+.reveal.delay3{animation-delay:1.2s}
+
+@keyframes revealUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* LOGO */
+
+.logo{
+width:clamp(180px,50vw,280px);
+margin-bottom:32px;
+filter:drop-shadow(0 0 14px rgba(206,177,126,.18));
+}
+
+/* DIVIDER */
+
+.divider{
+width:50px;
+height:1px;
+background:#ceb17e;
+margin:28px auto;
+opacity:.4;
+}
+
+/* HEADLINE */
+
+h1{
+font-family:'Cormorant Garamond',serif;
+font-weight:300;
+letter-spacing:.08em;
+font-size:clamp(28px,5vw,40px);
+margin-bottom:12px;
+}
+
+/* TEXT */
+
+.sub{
+color:#9a9a9a;
+font-size:clamp(14px,3.5vw,16px);
+line-height:1.8;
+margin-bottom:28px;
+}
+
+/* FORM */
+
+form{
+display:flex;
+gap:10px;
+width:100%;
+max-width:420px;
+margin:auto;
+}
+
+/* PREMIUM INPUT */
+
+input{
+flex:1;
+padding:16px 18px;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(206,177,126,.35);
+color:white;
+font-size:15px;
+border-radius:30px;
+backdrop-filter:blur(6px);
+transition:.3s;
+}
+
+input:focus{
+border-color:#ceb17e;
+outline:none;
+background:rgba(255,255,255,.06);
+}
+
+/* BUTTON */
+
+button{
+background:#ceb17e;
+border:none;
+padding:15px 22px;
+font-size:12px;
+letter-spacing:.18em;
+text-transform:uppercase;
+cursor:pointer;
+border-radius:30px;
+transition:.25s;
+}
+
+button:hover{
+background:#d8c193;
+transform:translateY(-1px);
+}
+
+/* CONTACT */
+
+.contact{
+margin-top:40px;
+font-size:14px;
+color:#9a9a9a;
+}
+
+.contact a{
+color:#9a9a9a;
+text-decoration:none;
+}
+
+.contact a:hover{
+color:white;
+}
+
+/* FOOTER */
+
+footer{
+position:fixed;
+bottom:14px;
+font-size:10px;
+letter-spacing:.18em;
+opacity:.5;
+}
+
+.footer-credit{
+display:block;
+margin-top:6px;
+font-size:9px;
+letter-spacing:.16em;
+color:#ceb17e;
+text-decoration:none;
+}
+
+.footer-credit:hover{
+color:#dcc49a;
+}
+
+/* MOBILE */
+
+@media (max-width:600px){
+
+form{
+flex-direction:column;
+}
+
+button{
+width:100%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="intro">
+<h1>OLYMPUS</h1>
+</div>
+
+<div class="columns">
+<div class="column"></div>
+<div class="column"></div>
+<div class="column"></div>
+</div>
+
+<canvas id="particles"></canvas>
+
+<div class="container">
+
+<img class="logo reveal"
+src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a7b00ac3a5d76378be7804/f17893ea6_LogoT14x.png">
+
+<div class="divider reveal delay1"></div>
+
+<h1 class="reveal delay1">Coming Soon</h1>
+
+<p class="sub reveal delay2">
+Olympus Talent & Entertainment is preparing something exceptional.
+Join the list to be first to know when we launch.
+</p>
+
+<form class="reveal delay3" action="https://formspree.io/f/xlgwqnlp" method="POST">
+
+<input type="email" name="email" placeholder="Your email address" required>
+
+<button type="submit">Notify</button>
+
+<input type="text" name="_gotcha" style="display:none">
+
+</form>
+
+<div class="contact reveal delay3">
+
+<p>Email</p>
+<a href="mailto:contact@olympustalent.us">contact@olympustalent.us</a>
+
+<br><br>
+
+<p>Phone</p>
+<a href="tel:7146734033">714-673-4033</a>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2025 OLYMPUS TALENT & ENTERTAINMENT
+
+<a class="footer-credit" href="https://huecohouse.com" target="_blank">
+Website issued by Hueco House
+</a>
+
+</footer>
+
+<script>
+
+const canvas=document.getElementById("particles")
+const ctx=canvas.getContext("2d")
+
+function resize(){
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+}
+
+resize()
+window.addEventListener("resize",resize)
+
+let particles=[]
+
+for(let i=0;i<40;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+speed:Math.random()*0.3
+})
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height)
+ctx.fillStyle="rgba(206,177,126,0.45)"
+
+particles.forEach(p=>{
+ctx.beginPath()
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
+ctx.fill()
+
+p.y+=p.speed
+
+if(p.y>canvas.height){
+p.y=0
+p.x=Math.random()*canvas.width
+}
+})
+
+requestAnimationFrame(draw)
+}
+
+draw()
+
+</script>
+
+</body>
+</html>}
 
 /* INTRO CINEMATIC FADE */
 
